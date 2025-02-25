@@ -38,4 +38,11 @@ public class AuthorController {
         else
             return ResponseEntity.notFound().build();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Author> deleteAuthorById(@PathVariable Long id){
+        Optional<Author> author = authorService.findById(id);
+        return authorService.deleteById(id).isPresent() ? ResponseEntity.ok(author.get()) : ResponseEntity.notFound().build();
+    }
+
 }

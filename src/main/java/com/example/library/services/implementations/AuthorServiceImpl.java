@@ -5,7 +5,6 @@ import com.example.library.repository.AuthorRepository;
 import com.example.library.services.interfaces.IAuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -28,4 +27,13 @@ public class AuthorServiceImpl implements IAuthorService {
     public Optional<Author> findByName(String name) {
         return authorRepository.findByName(name);
     }
+
+    @Override
+    public Optional<Author> deleteById(Long id) {
+        Optional<Author> author = authorRepository.findById(id);
+        if(author.isPresent())
+            authorRepository.deleteById(id);
+        return author;
+    }
+
 }
