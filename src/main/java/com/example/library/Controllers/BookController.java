@@ -10,11 +10,15 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/books")
+@RequestMapping("/api/books")
 public class BookController {
 
+    private final IBookService iBookService;
+
     @Autowired
-    private IBookService iBookService;
+    public BookController(IBookService iBookService) {
+        this.iBookService = iBookService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Book>> getAllBooks(){

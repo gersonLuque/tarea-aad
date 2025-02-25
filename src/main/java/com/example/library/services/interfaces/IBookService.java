@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface IBookService {
     List<Book> findAll();
     Optional<Book> findById(Long id);
-    Optional<Book> findByTittle(String title);
+    Optional<Book> findByTitle(String title);
     List<Book> findByPublicationYear(int year);
     List<Book> findByAuthorId(Long authorId);
 }
