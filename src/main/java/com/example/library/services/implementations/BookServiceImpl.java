@@ -3,6 +3,7 @@ package com.example.library.services.implementations;
 import com.example.library.models.Book;
 import com.example.library.repository.BookRepository;
 import com.example.library.services.interfaces.IBookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +12,12 @@ import java.util.Optional;
 @Service
 public class BookServiceImpl implements IBookService {
 
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
+
+    @Autowired
+    public BookServiceImpl(BookRepository bookRepository){
+        this.bookRepository = bookRepository;
+    }
 
     @Override
     public List<Book> findAll() {
@@ -24,7 +30,7 @@ public class BookServiceImpl implements IBookService {
     }
 
     @Override
-    public Optional<Book> findByTittle(String title) {
+    public Optional<Book> findByTitle(String title) {
         return bookRepository.findByTitle(title);
     }
 
