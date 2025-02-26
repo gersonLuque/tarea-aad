@@ -1,5 +1,6 @@
 package com.example.library.Controllers;
 
+import com.example.library.models.Author;
 import com.example.library.models.Book;
 import com.example.library.services.interfaces.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +38,11 @@ public class BookController {
     public List<Book> getBooksByAuthor(@RequestParam Long authorId) {
         return iBookService.findByAuthorId(authorId);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Book> deleteAuthorById(@PathVariable Long id){
+        Optional<Book> book = iBookService.findById(id);
+        return iBookService.deleteById(id).isPresent() ? ResponseEntity.ok(book.get()) : ResponseEntity.notFound().build();
+    }
+
 }
