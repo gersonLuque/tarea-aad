@@ -9,4 +9,5 @@ public interface IAuthorService {
     List<Author> findAll();
     Optional<Author> findById(Long id);
     Optional<Author> findByName(String name);
+    Optional<Author> deleteById(Long id);
 }
