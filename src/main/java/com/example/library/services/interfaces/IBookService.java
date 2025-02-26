@@ -11,5 +11,6 @@ public interface IBookService {
     Optional<Book> findByTitle(String title);
     List<Book> findByPublicationYear(int year);
     List<Book> findByAuthorId(Long authorId);
+    Book save(Book newBook);
     Optional<Book> deleteById(Long id);
 }

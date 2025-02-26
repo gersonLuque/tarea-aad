@@ -4,6 +4,7 @@ import com.example.library.models.Author;
 import com.example.library.models.Book;
 import com.example.library.services.interfaces.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +38,12 @@ public class BookController {
     @GetMapping(params = "authorId")
     public List<Book> getBooksByAuthor(@RequestParam Long authorId) {
         return iBookService.findByAuthorId(authorId);
+    }
+
+    @PostMapping
+    public ResponseEntity<Book> save(@RequestBody Book newBook){
+        Book book = iBookService.save(newBook);
+        return ResponseEntity.status(HttpStatus.CREATED).body(book);
     }
 
     @DeleteMapping("/{id}")

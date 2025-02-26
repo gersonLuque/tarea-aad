@@ -7,6 +7,7 @@ import com.example.library.services.interfaces.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,6 +44,15 @@ public class BookServiceImpl implements IBookService {
     @Override
     public List<Book> findByAuthorId(Long authorId) {
         return bookRepository.findByAuthor_Id(authorId);
+    }
+
+    @Override
+    public Book save(Book newBook){
+
+        if(newBook.getAuthor() != null)
+            newBook.getAuthor().getBooks().add(newBook);
+
+        return bookRepository.save(newBook);
     }
 
     @Override
