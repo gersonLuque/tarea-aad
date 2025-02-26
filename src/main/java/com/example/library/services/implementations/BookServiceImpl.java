@@ -1,5 +1,6 @@
 package com.example.library.services.implementations;
 
+import com.example.library.models.Author;
 import com.example.library.models.Book;
 import com.example.library.repository.BookRepository;
 import com.example.library.services.interfaces.IBookService;
@@ -43,4 +44,13 @@ public class BookServiceImpl implements IBookService {
     public List<Book> findByAuthorId(Long authorId) {
         return bookRepository.findByAuthor_Id(authorId);
     }
+
+    @Override
+    public Optional<Book> deleteById(Long id) {
+        Optional<Book> book = bookRepository.findById(id);
+        if(book.isPresent())
+            bookRepository.deleteById(id);
+        return book;
+    }
+
 }
