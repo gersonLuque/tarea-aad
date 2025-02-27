@@ -2,13 +2,16 @@ package com.example.library.services.implementations;
 
 import com.example.library.models.Author;
 import com.example.library.models.Book;
+import com.example.library.repository.AuthorRepository;
 import com.example.library.repository.BookRepository;
 import com.example.library.services.interfaces.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -61,6 +64,23 @@ public class BookServiceImpl implements IBookService {
         if(book.isPresent())
             bookRepository.deleteById(id);
         return book;
+    }
+
+    @Override
+    public Optional<Book> update(Long id, Map<String, Integer> publicationYear) {
+
+        if (!publicationYear.containsKey("publicationYear")) {
+            return Optional.empty(); // Si no viene el campo, retornamos vacío
+        }
+
+        Optional<Book> bookToUpdate = bookRepository.findById(id);
+        if(bookToUpdate.isPresent()){
+            Book book = bookToUpdate.get();
+            book.setPublicationYear(publicationYear.get("publicationYear"));
+            bookRepository.save(book);
+            return Optional.of(book);
+        }
+        return Optional.empty();
     }
 
 }
