@@ -1,0 +1,5 @@
+El negocio simulado gestiona libros y autores a través de una plataforma que permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar).
+Los usuarios pueden consultar todos los autores o libros, buscar por ID o nombre, agregar nuevos libros,
+actualizar el año de publicación de un libro y eliminar libros o autores.
+La lógica de negocio se maneja mediante servicios que interactúan con la base de datos, mientras que los controladores REST
+gestionan las solicitudes HTTP y las respuestas. Este sistema puede ser utilizado como base para una aplicación de biblioteca o gestión de catálogo.
